@@ -1,0 +1,23 @@
+// One continuous composition. Each source appears exactly once in the gallery.
+export const visualSelection = [
+ {asset:61,label:'留下痕迹',english:'MIXED MEMORY',align:'center',folio:'01',tone:'dark',x:4,y:13,w:42},
+ {asset:52,label:'静物与气味',english:'OBJECT / SCENT',align:'center',folio:null,tone:'light',x:78,y:5,w:17},
+ {asset:20,label:'光落在脸上',english:'LIGHT ON SKIN',align:'edge',folio:null,tone:'light',x:61,y:46,w:32},
+ {asset:45,label:'城市脉搏',english:'CITY AFTER DARK',align:'center',folio:null,tone:'light',x:8,y:75,w:34},
+ {asset:6,label:'光的形状',english:'SHAPES OF LIGHT',align:'center',folio:null,tone:'light',x:40,y:119,w:17},
+ {asset:34,label:'出发之前',english:'SOFT DEPARTURE',align:'center',folio:null,tone:'dark',x:76,y:131,w:16},
+ {asset:46,label:'窗外的远方',english:'WINDOW SEAT',align:'edge',folio:'07',tone:'light',x:5,y:164,w:40},
+ {asset:13,label:'透过轻纱',english:'THROUGH THE VEIL',align:'center',folio:null,tone:'dark',x:62,y:181,w:28},
+ {asset:64,label:'喘息空间',english:'AI-ASSISTED POSTER',align:'edge',folio:'09',tone:'light',x:16,y:236,w:36},
+ {asset:19,label:'另一种视角',english:'ANOTHER ANGLE',align:'center',folio:null,tone:'dark',x:76,y:250,w:17},
+ {asset:65,label:'动态视觉实验',english:'MOVING COLLAGE',align:'center',folio:'11',tone:'light',x:54,y:292,w:35},
+ {asset:24,label:'城市里的春天',english:'CITY BLOOM',align:'center',folio:null,tone:'light',x:7,y:307,w:33},
+ {asset:25,label:'水边片刻',english:'BY THE WATER',align:'edge',folio:null,tone:'light',x:10,y:353,w:32},
+ {asset:50,label:'气味的影子',english:'SCENT / SHADOW',align:'center',folio:null,tone:'light',x:70,y:374,w:23},
+ {asset:15,label:'偶然留下',english:'FOUND SMILE',align:'center',folio:null,tone:'dark',x:43,y:414,w:15},
+ {asset:8,label:'表面之下',english:'SURFACE',align:'edge',folio:'16',tone:'light',x:6,y:450,w:40},
+ {asset:30,label:'逆光盛开',english:'IN BLOOM',align:'center',folio:null,tone:'dark',x:64,y:467,w:30},
+ {asset:62,label:'晓平视觉',english:'REAL SKIN',align:'center',folio:null,tone:'dark',x:20,y:530,w:30},
+ {asset:3,label:'临海而居',english:'COASTAL MEMORY',align:'edge',folio:null,tone:'light',x:70,y:553,w:24},
+ {asset:33,label:'风经过水面',english:'STILL WATER',align:'center',folio:'20',tone:'light',x:7,y:592,w:34},
+];

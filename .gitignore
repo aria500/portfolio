@@ -1,0 +1,18 @@
+# Dependencies and generated Next.js output
+node_modules/
+.next/
+out/
+
+# Local logs and temporary files
+*.log
+.tmp/
+*.tsbuildinfo
+
+# Local agent and workspace metadata
+.codex/
+AGENTS.md
+sources/
+
+# Deployment metadata
+.vercel/
+.netlify/

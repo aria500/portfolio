@@ -1,0 +1,611 @@
+.page {
+  --feed-card: rgba(255, 252, 246, 0.88);
+  --feed-border: rgba(30, 30, 30, 0.1);
+  --feed-shadow: 0 20px 60px rgba(35, 29, 24, 0.09);
+  position: relative;
+  isolation: isolate;
+  background: transparent;
+}
+
+.backgroundLayer {
+  --feed-grid-opacity: 0;
+  position: fixed;
+  z-index: 0;
+  inset: 0;
+  background: #ffffff;
+  pointer-events: none;
+  will-change: background-color;
+}
+
+.backgroundLayer::before {
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(rgba(0, 0, 0, 0.021) 0.6px, transparent 0.6px),
+    linear-gradient(90deg, rgba(0, 0, 0, 0.021) 0.6px, transparent 0.6px),
+    radial-gradient(circle, rgba(30, 27, 23, 0.011) 0.4px, transparent 0.55px);
+  background-position: center;
+  background-size: 18px 18px, 18px 18px, 3px 3px;
+  content: "";
+  opacity: calc(var(--feed-grid-opacity) * 0.72);
+  pointer-events: none;
+  transition: opacity 180ms linear;
+}
+
+.content {
+  position: relative;
+  z-index: 1;
+}
+
+/* One background layer only. Section wrappers remain transparent. */
+.page :global(.feed-city-hero-track),
+.page :global(.feed-city-hero),
+.page :global(.feed-fixed-story),
+.page :global(.feed-fixed-story__sticky),
+.page :global(.feed-fixed-story__foreground),
+.page :global(.feed-story-part),
+.page :global(.feed-strategy-boards),
+.page :global(.feed-production-sequence),
+.page :global(.feed-production-sequence__backdrop),
+.page :global(.feed-production-sequence__foreground),
+.page :global(.feed-production-sequence__intro),
+.page :global(.feed-fixed-story__stage),
+.page :global(.feed-graphic-editorial-scroll),
+.page :global(.feed-graphic-editorial),
+.page :global(.feed-planning-platform),
+.page :global(.feed-planning-platform__opening),
+.page :global(.feed-planning-platform__step),
+.page :global(.feed-copy-evidence) {
+  background: transparent !important;
+  background-color: transparent !important;
+  background-image: none !important;
+}
+
+.page :global(.feed-production-sequence__backdrop::before) {
+  content: none;
+}
+
+/* Hero returns to its original white cover with black type before reveal. */
+.page :global(.feed-city-hero-track .feed-city-hero__title > h1) {
+  color: #000000;
+  font-weight: 700;
+}
+
+.page :global(.feed-city-hero-track .feed-city-hero__title-revealed h1) {
+  color: #ffffff;
+  font-weight: 700;
+}
+
+/* Fixed chapter titles inherit the active part color without carrying a panel. */
+.page :global(.feed-fixed-story__sticky) {
+  color: var(--story-title, #000000);
+}
+
+.page :global(.feed-fixed-story__heading h2) {
+  color: var(--story-title, #000000) !important;
+  font-weight: 500;
+  transition: color 0.65s ease;
+}
+
+.page :global(.feed-fixed-story__heading p),
+.page :global(.feed-fixed-story__summary),
+.page :global(.feed-fixed-story__keywords) {
+  color: color-mix(in srgb, var(--story-title, #000000) 72%, #68635c);
+}
+
+/* Large titles use scale, spacing and color rather than heavy weight. */
+.page :global(.feed-production-sequence__intro h2),
+.page :global(.feed-strategy-card h3),
+.page :global(.feed-production-page__copy h3),
+.page :global(.feed-graphic-editorial__copy h3),
+.page :global(.feed-graphic-editorial__support-copy h3),
+.page :global(.feed-planning-platform__content h3),
+.page :global(.feed-strategy-execution__copy h3),
+.page :global(.feed-strategy-feedback h3),
+.page :global(.feed-copy-evidence__intro h2),
+.page :global(.feed-solve h2),
+.page :global(.feed3-solve h2) {
+  font-weight: 500;
+}
+
+.page :global(.feed-production-sequence__intro h2),
+.page :global(.feed-production-page__copy h3) {
+  color: #454add;
+}
+
+.page :global(.feed-planning-platform__content h3) {
+  color: #2b2520;
+}
+
+.page :global(.feed-copy-evidence__background) {
+  color: rgba(156, 227, 227, 0.13);
+  font-weight: 500;
+}
+
+.page :global(.feed-copy-evidence__intro h2) {
+  color: #7b2214;
+}
+
+/* Cards remain one material system, with enough opacity for the darker parts. */
+.page :global(.feed-strategy-card),
+.page :global(.feed-strategy-execution__copy),
+.page :global(.feed-strategy-execution__video),
+.page :global(.feed-planning-platform__card),
+.page :global(.feed-copy-evidence__intro),
+.page :global(.feed-copy-evidence__proof),
+.page :global(.feed-production-sequence .feed-graphic-editorial__case) {
+  border-color: var(--feed-border);
+  background: var(--feed-card) !important;
+  box-shadow: var(--feed-shadow);
+}
+
+/* Part 1 cards stay optically clean above the paper grid. */
+.page :global(.feed-strategy-boards .feed-strategy-card),
+.page :global(.feed-strategy-boards .feed-strategy-execution__copy),
+.page :global(.feed-strategy-boards .feed-strategy-execution__video) {
+  background: #fffdf9 !important;
+}
+
+.page :global(.feed-long-image-preview__detail),
+.page :global(.feed-graphic-editorial__support-image .feed-long-image-preview__detail) {
+  background-color: rgba(255, 252, 246, 0.94) !important;
+}
+
+.page :global(.feed-solve),
+.page :global(.feed3-solve) {
+  background: transparent !important;
+  color: #f6f0e4;
+}
+
+.page :global(.feed-solve h2),
+.page :global(.feed3-solve h2) {
+  color: #9ce3e3;
+}
+
+@supports not (color: color-mix(in srgb, #000000, #ffffff)) {
+  .page :global(.feed-fixed-story__heading p),
+  .page :global(.feed-fixed-story__summary),
+  .page :global(.feed-fixed-story__keywords) {
+    color: #66615b;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .page :global(.feed-fixed-story__heading h2) {
+    transition: none;
+  }
+}
+
+/* Shared chapter-title template: part, Chinese title, English line, summary, keywords. */
+.page :global(.feed-fixed-story__copy),
+.page :global(.feed-production-sequence__intro > div) {
+  display: flex;
+  width: min(760px, 78vw);
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+
+.page :global(.feed-fixed-story__copy) {
+  top: 50%;
+  grid-template-columns: none;
+  grid-template-areas: none;
+  row-gap: 0;
+  column-gap: 0;
+}
+
+.page :global(.feed-fixed-story__heading) {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.page :global(.feed-chapter-part),
+.page :global(.feed-production-sequence__intro .feed-chapter-part) {
+  order: -1;
+  margin: 0 0 22px;
+  color: color-mix(in srgb, var(--story-title, #000000) 54%, #8a857d);
+  font-size: 11px;
+  font-weight: 400;
+  line-height: 1;
+  letter-spacing: 0.18em;
+}
+
+.page :global(.feed-fixed-story__heading h2),
+.page :global(.feed-production-sequence__intro h2) {
+  margin: 0;
+  color: var(--story-title, #000000);
+  font-size: clamp(68px, 6.25vw, 90px);
+  font-weight: 500;
+  line-height: 0.98;
+  letter-spacing: -0.055em;
+}
+
+.page :global(.feed-fixed-story__heading p),
+.page :global(.feed-production-sequence__intro span:not(.feed-chapter-part)) {
+  display: block;
+  margin: 16px 0 0;
+  color: color-mix(in srgb, var(--story-title, #000000) 58%, #777169);
+  font-size: clamp(13px, 1.05vw, 17px);
+  font-weight: 300;
+  line-height: 1.35;
+  letter-spacing: 0.09em;
+}
+
+.page :global(.feed-fixed-story__summary),
+.page :global(.feed-production-sequence__intro strong) {
+  align-self: center;
+  width: min(680px, 72vw);
+  margin: clamp(28px, 3.6vh, 38px) auto 0;
+  color: color-mix(in srgb, var(--story-title, #000000) 78%, #47433e);
+  font-size: clamp(23px, 2vw, 32px);
+  font-weight: 400;
+  line-height: 1.55;
+  text-align: center;
+}
+
+.page :global(.feed-fixed-story__keywords),
+.page :global(.feed-production-sequence__intro ul) {
+  align-self: center;
+  justify-content: center;
+  margin: 24px auto 0;
+  color: color-mix(in srgb, var(--story-title, #000000) 56%, #777169);
+  font-size: clamp(14px, 1vw, 17px);
+  font-weight: 300;
+  line-height: 1.4;
+}
+
+@media (max-width: 760px) {
+  .page :global(.feed-fixed-story__copy),
+  .page :global(.feed-production-sequence__intro > div) {
+    width: 86vw;
+  }
+
+  .page :global(.feed-fixed-story__heading h2),
+  .page :global(.feed-production-sequence__intro h2) {
+    font-size: clamp(52px, 15vw, 66px);
+  }
+
+  .page :global(.feed-fixed-story__summary),
+  .page :global(.feed-production-sequence__intro strong) {
+    width: 82vw;
+    font-size: clamp(20px, 5.8vw, 27px);
+  }
+}
+
+/* Graphic Editorial / 01–02 — final alignment calibration only. */
+@media (min-width: 901px) {
+  .page :global(.feed-production-sequence .feed-graphic-editorial__case--main) {
+    grid-template-columns:
+      minmax(260px, 3.8fr)
+      minmax(120px, 1.55fr)
+      minmax(0, 5.65fr);
+    align-items: center;
+    gap: clamp(24px, 2.6vw, 48px);
+    padding: clamp(50px, 6.5vh, 72px) clamp(48px, 5vw, 92px);
+  }
+
+  .page :global(.feed-graphic-editorial__copy) {
+    grid-column: 1;
+    align-self: center;
+    translate: 0 -3.5vh;
+  }
+
+  .page :global(.feed-graphic-editorial__details) {
+    grid-column: 2;
+    align-self: center;
+  }
+
+  .page :global(.feed-graphic-editorial__overview) {
+    grid-column: 3;
+  }
+
+  .page :global(.feed-production-sequence .feed-graphic-editorial__case--support) {
+    grid-template-columns: minmax(300px, 4fr) minmax(0, 7fr);
+    align-items: center;
+    gap: clamp(50px, 6vw, 112px);
+    padding: clamp(50px, 6.5vh, 72px) clamp(58px, 7vw, 132px);
+  }
+
+  .page :global(.feed-graphic-editorial__support-copy) {
+    grid-column: 1;
+    align-self: center;
+    translate: 0 -3.5vh;
+    transform: none;
+  }
+
+  .page :global(.feed-graphic-editorial__support-image) {
+    grid-column: 2;
+  }
+}
+
+.page :global(.feed-graphic-editorial__overview),
+.page :global(.feed-graphic-editorial__support-image) {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) clamp(58px, 5.2vw, 86px);
+  align-items: stretch;
+  column-gap: clamp(18px, 1.8vw, 32px);
+  height: min(66vh, 630px);
+  overflow: visible;
+}
+
+.page :global(.feed-graphic-editorial__overview .feed-long-image-preview__detail),
+.page :global(.feed-graphic-editorial__support-image .feed-long-image-preview__detail) {
+  position: relative;
+  z-index: 1;
+  top: auto;
+  right: auto;
+  left: auto;
+  grid-column: 1;
+  grid-row: 1;
+  width: 100%;
+  height: 100%;
+  transform: none;
+}
+
+.page :global(.feed-graphic-editorial__overview .feed-long-image-preview__source),
+.page :global(.feed-graphic-editorial__support-image .feed-long-image-preview__source) {
+  position: relative;
+  z-index: 2;
+  inset: auto;
+  grid-column: 2;
+  grid-row: 1;
+  width: 100%;
+  height: 100%;
+  padding: 8px;
+  border: 1px solid rgba(30, 30, 30, 0.08);
+  background: rgba(255, 252, 246, 0.58);
+}
+
+.page :global(.feed-graphic-editorial__overview:not(.is-inspecting) .feed-long-image-preview__detail) {
+  background-position: center center !important;
+  background-size: contain !important;
+}
+
+.page :global(.feed-graphic-editorial__support-image:not(.is-inspecting) .feed-long-image-preview__detail) {
+  background-position: center top !important;
+  background-size: 100% auto !important;
+}
+
+.page :global(.feed-graphic-editorial__overview.is-inspecting .feed-long-image-preview__detail),
+.page :global(.feed-graphic-editorial__support-image.is-inspecting .feed-long-image-preview__detail) {
+  background-size: 112% auto;
+}
+
+.page :global(.feed-graphic-editorial__details) {
+  justify-self: stretch;
+}
+
+.page :global(.feed-graphic-editorial__detail) {
+  width: 100%;
+}
+
+@media (max-width: 900px) {
+  .page :global(.feed-graphic-editorial__copy),
+  .page :global(.feed-graphic-editorial__support-copy) {
+    translate: 0 -1.5vh;
+  }
+
+  .page :global(.feed-graphic-editorial__overview),
+  .page :global(.feed-graphic-editorial__support-image) {
+    grid-template-columns: minmax(0, 1fr) clamp(42px, 8vw, 64px);
+    column-gap: 12px;
+    height: min(58vh, 520px);
+  }
+
+  .page :global(.feed-graphic-editorial__overview .feed-long-image-preview__source),
+  .page :global(.feed-graphic-editorial__support-image .feed-long-image-preview__source) {
+    width: 100%;
+    padding: 5px;
+  }
+}
+
+@media (max-width: 560px) {
+  .page :global(.feed-graphic-editorial__overview),
+  .page :global(.feed-graphic-editorial__support-image) {
+    width: 100%;
+    grid-template-columns: minmax(0, 1fr) 42px;
+    height: min(44vh, 390px);
+    margin-left: 0;
+  }
+}
+
+/* Copy Expression — text is the evidence, not a screenshot. */
+.page :global(.feed-copy-evidence__intro),
+.page :global(.feed-copy-evidence__proof) {
+  min-height: clamp(500px, 64vh, 590px);
+  border-color: rgba(255, 255, 255, 0.28);
+  background: rgba(255, 244, 236, 0.84) !important;
+  box-shadow: 0 28px 80px rgba(0, 0, 0, 0.16);
+}
+
+.page :global(.feed-copy-evidence__intro) {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.page :global(.feed-copy-evidence__proof) {
+  display: flex;
+  padding: clamp(30px, 3.2vw, 50px);
+  flex-direction: column;
+  justify-content: center;
+}
+
+.page :global(.feed-copy-evidence__proof:hover) {
+  background: rgba(255, 247, 240, 0.91) !important;
+  box-shadow: 0 32px 86px rgba(0, 0, 0, 0.18);
+}
+
+.page :global(.feed-copy-evidence__proof-label) {
+  min-height: auto;
+  padding: 0 0 clamp(18px, 2.2vh, 26px);
+  border-bottom: 1px solid rgba(80, 40, 34, 0.16);
+}
+
+.page :global(.feed-copy-evidence__writing-sheet) {
+  display: flex;
+  min-height: 0;
+  padding-top: clamp(24px, 3vh, 34px);
+  flex: 1;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.page :global(.feed-copy-evidence__lead > p) {
+  margin: 0;
+  color: #5f4d47;
+  font-size: clamp(14px, 1.05vw, 17px);
+  font-weight: 400;
+  line-height: 1.6;
+}
+
+.page :global(.feed-copy-evidence__lead > span) {
+  display: block;
+  margin-top: 8px;
+  color: #8e7770;
+  font-size: 12px;
+  letter-spacing: 0.06em;
+}
+
+.page :global(.feed-copy-evidence__lead blockquote) {
+  margin: clamp(13px, 1.7vh, 20px) 0 clamp(24px, 3vh, 34px);
+  color: #572c28;
+  font-size: clamp(30px, 3.1vw, 48px);
+  font-weight: 500;
+  line-height: 1.22;
+  letter-spacing: -0.045em;
+  opacity: 0;
+  transform: translateY(12px);
+  transition: opacity 0.5s ease-out 0.38s, transform 0.62s cubic-bezier(.22, 1, .36, 1) 0.38s;
+}
+
+.page :global(.feed-copy-evidence__quotes) {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  margin: 0;
+  border-bottom: 1px solid rgba(80, 40, 34, 0.16);
+}
+
+.page :global(.feed-copy-evidence__quotes blockquote) {
+  padding: clamp(17px, 2vh, 24px) clamp(16px, 1.7vw, 26px) clamp(17px, 2vh, 24px) 0;
+  color: #453b37;
+  font-size: clamp(16px, 1.35vw, 21px);
+  font-weight: 400;
+  line-height: 1.55;
+}
+
+.page :global(.feed-copy-evidence__quotes blockquote:nth-child(2)) {
+  padding-right: 0;
+  padding-left: clamp(16px, 1.7vw, 26px);
+  border-left: 1px solid rgba(80, 40, 34, 0.16);
+}
+
+.page :global(.feed-copy-evidence__quotes .feed-copy-evidence__closing) {
+  grid-column: 1 / -1;
+  padding-right: 0;
+  border-top: 1px solid rgba(80, 40, 34, 0.16);
+  color: #765f57;
+  font-size: clamp(13px, 1vw, 16px);
+  font-weight: 300;
+  letter-spacing: 0.015em;
+}
+
+.page :global(.feed-copy-evidence[data-active="true"] .feed-copy-evidence__lead blockquote) {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.page :global(.feed-copy-evidence__writing-sheet footer) {
+  display: flex;
+  margin-top: clamp(18px, 2.2vh, 26px);
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 24px;
+}
+
+.page :global(.feed-copy-evidence__writing-sheet footer > p) {
+  max-width: 35em;
+  margin: 0;
+  color: #806f68;
+  font-size: 11px;
+  font-weight: 300;
+  line-height: 1.65;
+}
+
+.page :global(.feed-copy-evidence__writing-sheet footer ul) {
+  display: flex;
+  flex: none;
+  gap: 7px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.page :global(.feed-copy-evidence__writing-sheet footer li) {
+  padding: 5px 8px;
+  border: 1px solid rgba(80, 40, 34, 0.13);
+  color: #78625b;
+  font-size: 9px;
+  letter-spacing: 0.05em;
+  white-space: nowrap;
+}
+
+@media (max-width: 980px) {
+  .page :global(.feed-copy-evidence__intro),
+  .page :global(.feed-copy-evidence__proof) {
+    min-height: auto;
+  }
+
+  .page :global(.feed-copy-evidence__proof) {
+    width: min(820px, 100%);
+  }
+}
+
+@media (max-width: 620px) {
+  .page :global(.feed-copy-evidence__proof) {
+    padding: 28px 24px;
+  }
+
+  .page :global(.feed-copy-evidence__quotes) {
+    grid-template-columns: 1fr;
+  }
+
+  .page :global(.feed-copy-evidence__quotes blockquote:nth-child(2)) {
+    padding-left: 0;
+    border-top: 1px solid rgba(80, 40, 34, 0.16);
+    border-left: 0;
+  }
+
+  .page :global(.feed-copy-evidence__writing-sheet footer) {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  .page :global(.feed-copy-evidence__writing-sheet footer ul) {
+    flex-wrap: wrap;
+  }
+}
+
+/* Part 1 only — keep the fixed chapter title as a quiet paper impression. */
+.page :global(.feed-fixed-story[data-current="0"] .feed-fixed-story__heading h2) {
+  color: #2a2d87 !important;
+}
+
+.page :global(.feed-fixed-story[data-current="0"] .feed-fixed-story__heading p),
+.page :global(.feed-fixed-story[data-current="0"] .feed-fixed-story__summary),
+.page :global(.feed-fixed-story[data-current="0"] .feed-fixed-story__keywords),
+.page :global(.feed-fixed-story[data-current="0"] .feed-chapter-part) {
+  color: #2a2d87;
+}
+
+.page :global(.feed-strategy-card h3) {
+  font-size: clamp(30px, calc(4vw - 6px), 58px);
+}
+
+@media (max-width: 620px) {
+  .page :global(.feed-strategy-card h3) {
+    font-size: clamp(32px, calc(12vw - 6px), 46px);
+  }
+}
