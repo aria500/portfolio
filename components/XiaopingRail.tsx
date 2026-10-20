@@ -1,5 +1,7 @@
 "use client";
 
+import { assetPath } from "@/lib/assetPath";
+
 import { useEffect, useState } from "react";
 
 const sections = ["封面", "挑战", "产品", "策略", "打卡", "视觉", "文案", "快闪", "公益", "旅程", "媒介", "影片", "结尾"];
@@ -25,6 +27,6 @@ export function XiaopingRail() {
     return () => { window.removeEventListener("scroll", onScroll); window.removeEventListener("resize", onScroll); if (frame) cancelAnimationFrame(frame); };
   }, []);
   return <nav className="xp-rail" aria-label="Campaign chapters">
-    {sections.map((label, index) => <a key={label} href={`#xp-${index}`} className={active === index ? "is-active" : ""} aria-label={label} title={label}><span>{label}</span></a>)}
+    {sections.map((label, index) => <a key={label} href={assetPath(`#xp-${index}`)} className={active === index ? "is-active" : ""} aria-label={label} title={label}><span>{label}</span></a>)}
   </nav>;
 }

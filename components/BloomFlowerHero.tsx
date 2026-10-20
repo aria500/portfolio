@@ -1,5 +1,7 @@
 "use client";
 
+import { assetPath } from "@/lib/assetPath";
+
 import { useEffect, useRef, type CSSProperties } from "react";
 import styles from "./BloomFlowerHero.module.css";
 
@@ -24,7 +26,7 @@ export function BloomFlowerHero() {
       {placements.map(([x,y,size], i) => <div key={i} className={styles.plant} style={{
         "--x":`${x}%`, "--y":`${y}%`, "--size":`${size}px`, "--delay":`${(i * 7 % 24) * 35}ms`,
         "--duration":`${7 + i % 5 * 1.3}s`, "--drift":`${i % 2 ? 4 : -4}px`, "--phase":`${-i * .71}s`,
-      } as CSSProperties}><div className={styles.arrival}><div className={styles.drift}><img src={`/projects/drink-to-bloom/flowers/${flowers[i % 8]}.png`} alt="" width="1024" height="1024" decoding="async"/></div></div></div>)}
+      } as CSSProperties}><div className={styles.arrival}><div className={styles.drift}><img src={assetPath(`/projects/drink-to-bloom/flowers/${flowers[i % 8]}.png`)} alt="" width="1024" height="1024" decoding="async"/></div></div></div>)}
     </div>
     <div className={styles.copy}>
       <h1 id="bloom-title">DRINK TO BLOOM</h1>

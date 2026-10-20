@@ -1,3 +1,5 @@
+
+import { assetPath } from "@/lib/assetPath";
 import Link from "next/link";
 import type { CSSProperties } from "react";
 import type { Project } from "@/data/projects";
@@ -36,7 +38,7 @@ export function VisualNotesProject({ project, next }: { project: Project; next: 
 
         <section className="visual-notes-gallery" aria-label="Visual Notes photography series">
           {visualNotesImages.map((image) => (
-            <img key={image.src} src={image.src} alt={image.alt} className={`visual-notes-photo ${image.className}`} />
+            <img key={image.src} src={assetPath(image.src)} alt={image.alt} className={`visual-notes-photo ${image.className}`} />
           ))}
           <Link className="visual-notes-next" href="/projects/brand-planning">
             NEXT PROJECT · About <span aria-hidden="true">→</span>

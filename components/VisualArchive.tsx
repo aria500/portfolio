@@ -1,4 +1,6 @@
 "use client";
+
+import { assetPath } from "@/lib/assetPath";
 import {useEffect,useRef,useState, type CSSProperties} from "react";
 import {visualGalleryImages} from "./visualGalleryData";
 import {visualSelection} from "./visualSelection";
@@ -33,7 +35,7 @@ export function VisualArchive({nextSlug,nextTitle}:{nextSlug:string;nextTitle:st
  const photo=images[item.asset];
  return <figure key={photo.src} style={placements[index]} className={styles.frame}>
  <button className={styles.photoButton} onClick={()=>setActive(item.asset)} aria-label={"查看大图："+photo.alt}>
- {photo.type==='video'?<video src={photo.src} poster={photo.poster} muted autoPlay loop playsInline preload="metadata" aria-label={photo.alt} width={photo.width} height={photo.height} onLoadedData={event=>event.currentTarget.closest("figure")?.setAttribute("data-loaded","true")} className={styles.image}/>:<Image src={photo.src} alt={photo.alt} width={photo.width} height={photo.height} sizes="(max-width:767px) 70vw,43vw" priority={index<2} onLoad={event=>event.currentTarget.closest("figure")?.setAttribute("data-loaded","true")} className={styles.image}/>}
+ {photo.type==='video'?<video src={assetPath(photo.src)} poster={assetPath(photo.poster)} muted autoPlay loop playsInline preload="metadata" aria-label={photo.alt} width={photo.width} height={photo.height} onLoadedData={event=>event.currentTarget.closest("figure")?.setAttribute("data-loaded","true")} className={styles.image}/>:<Image src={assetPath(photo.src)} alt={photo.alt} width={photo.width} height={photo.height} sizes="(max-width:767px) 70vw,43vw" priority={index<2} onLoad={event=>event.currentTarget.closest("figure")?.setAttribute("data-loaded","true")} className={styles.image}/>}
  <span aria-hidden="true" className={styles.hoverNote} data-tone={item.tone} data-align={item.align}><span className={styles.noteNumber}>{String(index+1).padStart(2,'0')}</span><span className={styles.noteEnglish}>{item.english}</span><span className={styles.noteChinese}>{item.label}</span></span>
  </button>{item.folio&&<figcaption className={styles.edgeCaption}><span>{item.folio}</span><span>{item.english}</span></figcaption>}</figure>})}</div></section>
  <footer className={styles.footer}><Link href="/">返回作品集</Link><Link href="/projects/brand-planning">Next project · About</Link></footer>
@@ -43,7 +45,7 @@ export function VisualArchive({nextSlug,nextTitle}:{nextSlug:string;nextTitle:st
  onTouchEnd={e=>{if(!touch.current)return;const dx=e.changedTouches[0].clientX-touch.current.x,dy=e.changedTouches[0].clientY-touch.current.y;if(Math.abs(dx)>50&&Math.abs(dx)>Math.abs(dy))change(dx<0?1:-1);touch.current=null}}>
  {active!==null&&<><button className={styles.close} aria-label="关闭大图" onClick={()=>setActive(null)} autoFocus>×</button>
  <button className={styles.previous} aria-label="上一张" onClick={()=>change(-1)}>‹</button>
- {images[active].type==='video'?<video key={images[active].src} src={images[active].src} poster={images[active].poster} muted autoPlay loop playsInline controls aria-label={images[active].alt} className={styles.fullImage}/>:<Image key={images[active].src} src={images[active].src} alt={images[active].alt} width={images[active].width} height={images[active].height} sizes="90vw" loading="eager" className={styles.fullImage}/>}
+ {images[active].type==='video'?<video key={images[active].src} src={assetPath(images[active].src)} poster={assetPath(images[active].poster)} muted autoPlay loop playsInline controls aria-label={images[active].alt} className={styles.fullImage}/>:<Image key={images[active].src} src={assetPath(images[active].src)} alt={images[active].alt} width={images[active].width} height={images[active].height} sizes="90vw" loading="eager" className={styles.fullImage}/>}
  <button className={styles.next} aria-label="下一张" onClick={()=>change(1)}>›</button>
  <span className={styles.counter} aria-live="polite">{String(active+1).padStart(2,"0")} / {images.length}</span></>}
  </dialog></main>;

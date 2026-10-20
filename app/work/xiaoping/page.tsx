@@ -1,3 +1,5 @@
+
+import { assetPath } from "@/lib/assetPath";
 import Link from "next/link";
 import { ProjectFooter } from "@/components/ProjectFooter";
 import { AutoDragCarousel, AutoFadeImages, ScrollHorizontalImage, SequentialReveal } from "@/components/CampaignImageInteractions";
@@ -6,7 +8,7 @@ import { DaisyHome } from "@/components/DaisyHome";
 const root = "/images/xiaoping-slides";
 
 function Slide({ name, alt }: { name: string; alt: string }) {
-  return <section className="xp-slide"><img src={`${root}/${name}`} alt={alt} /></section>;
+  return <section className="xp-slide"><img src={assetPath(`${root}/${name}`)} alt={alt} /></section>;
 }
 
 export default function XiaopingPage() {
@@ -14,7 +16,7 @@ export default function XiaopingPage() {
     <DaisyHome />
     <Slide name="cover.png" alt="晓平品牌 Campaign 封面" />
     <Slide name="brand-problem.png" alt="晓平品牌问题" />
-    <SequentialReveal src={`${root}/product-truth.png`} alt="晓平产品支点" delay={135} regions={[
+    <SequentialReveal src={assetPath(`${root}/product-truth.png`)} alt="晓平产品支点" delay={135} regions={[
       {left:7.3,top:61,width:7.1,height:15},{left:14.4,top:61,width:7.1,height:15},{left:21.5,top:61,width:7.1,height:15},{left:28.6,top:61,width:7.1,height:15},
       {left:54.8,top:61,width:7.5,height:15},{left:62.3,top:61,width:7.5,height:15},{left:69.8,top:61,width:7.5,height:15},
     ]} />
@@ -53,10 +55,10 @@ export default function XiaopingPage() {
     </section>
 
     <Slide name="social-good.png" alt="晓平公益活动" />
-    <SequentialReveal src={`${root}/documentary-script.png`} alt="晓平纪录片脚本" delay={190} replayOnHover regions={[
+    <SequentialReveal src={assetPath(`${root}/documentary-script.png`)} alt="晓平纪录片脚本" delay={190} replayOnHover regions={[
       {left:.6,top:43,width:19.2,height:33},{left:20.7,top:43,width:19.2,height:33},{left:40.8,top:43,width:19.2,height:33},{left:60.8,top:43,width:19.2,height:33},{left:80.8,top:43,width:19.2,height:33},
     ]} />
-    <section className="xp-ending-slide"><img src={`${root}/ending.png`} alt="晓平 Campaign 结尾" /></section>
+    <section className="xp-ending-slide"><img src={assetPath(`${root}/ending.png`)} alt="晓平 Campaign 结尾" /></section>
     <ProjectFooter href="/projects/bloom-with-water/drink-to-bloom" title="Drink to Bloom" background="#f3eadf" color="#292720"/>
   </main>;
 }

@@ -1,5 +1,7 @@
 "use client";
 
+import { assetPath } from "@/lib/assetPath";
+
 import { CSSProperties, MouseEvent, useEffect, useRef, useState } from "react";
 
 type ImageItem = { src: string; alt: string };
@@ -53,7 +55,7 @@ export function SequentialReveal({ src, alt, regions, delay = 170, replayOnHover
   }, [delay, regions, replayOnHover]);
 
   return <section ref={ref} className={`sequential-reveal${replayOnHover ? " is-hover-replay" : ""}`} onMouseEnter={replayOnHover ? play : undefined}>
-    <img src={src} alt={alt} />
+    <img src={assetPath(src)} alt={alt} />
     {regions.map((region, index) => <i key={index} className={index < visible ? "is-revealed" : ""} style={{ "--left": `${region.left}%`, "--top": `${region.top}%`, "--width": `${region.width}%`, "--height": `${region.height}%` } as CSSProperties} />)}
     {replayOnHover && <CursorLabel text="VIEW" />}
   </section>;
@@ -81,7 +83,7 @@ export function ScrollHorizontalImage({ images }: { images: ImageItem[] }) {
     reduced.addEventListener("change", requestUpdate);
     return () => { window.removeEventListener("scroll", requestUpdate); window.removeEventListener("resize", requestUpdate); reduced.removeEventListener("change", requestUpdate); if (frame) cancelAnimationFrame(frame); };
   }, []);
-  return <section ref={sectionRef} className="scroll-horizontal-image" aria-label="媒介行程"><div className="scroll-horizontal-image__sticky"><div ref={trackRef} className="scroll-horizontal-image__track">{images.map((image) => <img key={image.src} src={image.src} alt={image.alt} />)}</div><CursorLabel text="SCROLL" /></div></section>;
+  return <section ref={sectionRef} className="scroll-horizontal-image" aria-label="媒介行程"><div className="scroll-horizontal-image__sticky"><div ref={trackRef} className="scroll-horizontal-image__track">{images.map((image) => <img key={image.src} src={assetPath(image.src)} alt={image.alt} />)}</div><CursorLabel text="SCROLL" /></div></section>;
 }
 
 export function AutoDragCarousel({ images, interval = 2200, label }: { images: ImageItem[]; interval?: number; label: string }) {
@@ -140,7 +142,7 @@ export function AutoDragCarousel({ images, interval = 2200, label }: { images: I
   }, [images.length]);
 
   return <div ref={stage} className="auto-drag-carousel" aria-label={label}>
-    <div className="auto-drag-carousel__stage">{images.map((image, index) => <img key={image.src} src={image.src} alt={image.alt} className={index === active ? "is-active" : ""} aria-hidden={index !== active} draggable={false} />)}</div>
+    <div className="auto-drag-carousel__stage">{images.map((image, index) => <img key={image.src} src={assetPath(image.src)} alt={image.alt} className={index === active ? "is-active" : ""} aria-hidden={index !== active} draggable={false} />)}</div>
     <div className="auto-drag-carousel__dots" aria-label="选择图片">{images.map((image, index) => <button key={image.src} type="button" className={index === active ? "is-active" : ""} onClick={() => { autoPauseUntil.current = Date.now() + 3600; show(index); }} aria-label={`显示第 ${index + 1} 张图片`} aria-current={index === active ? "true" : undefined} />)}</div>
     <CursorLabel text="SCROLL" />
   </div>;
@@ -153,5 +155,5 @@ export function AutoFadeImages({ images, interval = 2200, label }: { images: Ima
     const timer = window.setInterval(() => setActive((current) => (current + 1) % images.length), interval);
     return () => window.clearInterval(timer);
   }, [images.length, interval]);
-  return <div className="auto-fade-images" aria-label={label}>{images.map((image, index) => <img key={image.src} src={image.src} alt={image.alt} className={index === active ? "is-active" : ""} aria-hidden={index !== active} />)}</div>;
+  return <div className="auto-fade-images" aria-label={label}>{images.map((image, index) => <img key={image.src} src={assetPath(image.src)} alt={image.alt} className={index === active ? "is-active" : ""} aria-hidden={index !== active} />)}</div>;
 }

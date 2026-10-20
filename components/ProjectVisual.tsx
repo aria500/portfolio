@@ -1,5 +1,7 @@
 "use client";
 
+import { assetPath } from "@/lib/assetPath";
+
 import { useEffect, useRef } from "react";
 import type { Project } from "@/data/projects";
 import { BuiltWithAIHero } from "./BuiltWithAIHero";
@@ -37,13 +39,13 @@ export function ProjectVisual({
         <BuiltWithAIHero />
       ) : project.image ? (
         <>
-          <img src={project.image} alt={project.imageAlt} />
+          <img src={assetPath(project.image)} alt={project.imageAlt} />
           {project.video ? (
             <video
               ref={videoRef}
               className={`home-visual-video${active && previewing ? " is-previewing" : ""}`}
-              src={project.video}
-              poster={project.image}
+              src={assetPath(project.video)}
+              poster={assetPath(project.image)}
               muted
               loop
               playsInline

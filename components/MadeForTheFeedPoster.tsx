@@ -1,4 +1,6 @@
 "use client";
+
+import { assetPath } from "@/lib/assetPath";
 import { ProjectFooter } from "./ProjectFooter";
 
 import Image from "next/image";
@@ -82,7 +84,7 @@ function ShibuyaHero(){
   return <section ref={trackRef} data-feed-palette="0" className="feed-city-hero-track" aria-label="Made For The Feed 项目开场">
     <div className="feed-city-hero">
       <div className="feed-city-hero__image">
-        <Image src={`${mediaRoot}/shibuya-night.jpg`} alt="涩谷夜景俯拍，城市霓虹、广告屏、人流与街道交织" fill priority sizes="100vw"/>
+        <Image src={assetPath(`${mediaRoot}/shibuya-night.jpg`)} alt="涩谷夜景俯拍，城市霓虹、广告屏、人流与街道交织" fill priority sizes="100vw"/>
       </div>
       <div className="feed-city-hero__title">
         <h1>
@@ -119,8 +121,8 @@ type PosterSectionProps = {
 function PosterAsset({asset,index}:{asset:Asset;index:number}){
   return <figure className={`feed-poster__asset ${asset.className}`} style={{"--asset-order":index} as React.CSSProperties}>
     {asset.kind==="video"
-      ? <video src={`${mediaRoot}/${asset.src}`} muted loop autoPlay playsInline controls aria-label={asset.alt}/>
-      : <Image src={`${mediaRoot}/${asset.src}`} alt={asset.alt} fill sizes="(max-width:760px) 74vw,46vw"/>}
+      ? <video src={assetPath(`${mediaRoot}/${asset.src}`)} muted loop autoPlay playsInline controls aria-label={asset.alt}/>
+      : <Image src={assetPath(`${mediaRoot}/${asset.src}`)} alt={asset.alt} fill sizes="(max-width:760px) 74vw,46vw"/>}
   </figure>;
 }
 
@@ -206,7 +208,7 @@ function ClickToPlayStoryVideo({asset,root}:{asset:StoryAsset;root:string}){
     }
   };
   return <div className={`feed-story-video${playing?" is-playing":""}`}>
-    <video ref={videoRef} src={`${root}/${asset.src}`} poster={asset.poster?`${root}/${asset.poster}`:undefined} loop muted playsInline preload="metadata" controls aria-label={asset.alt} onPlay={()=>setPlaying(true)} onPause={()=>setPlaying(false)}/>
+    <video ref={videoRef} src={assetPath(`${root}/${asset.src}`)} poster={assetPath(asset.poster?`${root}/${asset.poster}`:undefined)} loop muted playsInline preload="metadata" controls aria-label={asset.alt} onPlay={()=>setPlaying(true)} onPause={()=>setPlaying(false)}/>
     {!playing?<button type="button" className="feed-story-video__play" onClick={togglePlayback} aria-label={`播放${asset.alt}`}><span aria-hidden="true"/></button>:null}
   </div>;
 }
@@ -217,8 +219,8 @@ function FixedStoryAsset({asset,index}:{asset:StoryAsset;index:number}){
     {asset.kind==="video"
       ? asset.clickToPlay
         ? <ClickToPlayStoryVideo asset={asset} root={root}/>
-        : <video src={`${root}/${asset.src}`} muted loop autoPlay playsInline controls aria-label={asset.alt}/>
-      : <Image src={`${root}/${asset.src}`} alt={asset.alt} fill sizes="(max-width:760px) 72vw,44vw"/>}
+        : <video src={assetPath(`${root}/${asset.src}`)} muted loop autoPlay playsInline controls aria-label={asset.alt}/>
+      : <Image src={assetPath(`${root}/${asset.src}`)} alt={asset.alt} fill sizes="(max-width:760px) 72vw,44vw"/>}
   </figure>;
 }
 
@@ -239,7 +241,7 @@ function StrategyBoards(){
         </div>
       </div>
       <div className="feed-account-growth__proofs">
-        <figure className="feed-account-growth__profile"><Image src={`${xhsRoot}/profile-420.png`} alt="mayebebaby 小红书主页，显示 420 粉丝和 2.7 万获赞与收藏" fill sizes="(max-width:760px) 88vw,42vw"/></figure>
+        <figure className="feed-account-growth__profile"><Image src={assetPath(`${xhsRoot}/profile-420.png`)} alt="mayebebaby 小红书主页，显示 420 粉丝和 2.7 万获赞与收藏" fill sizes="(max-width:760px) 88vw,42vw"/></figure>
       </div>
     </section>
 
@@ -251,8 +253,8 @@ function StrategyBoards(){
         <p className="feed-experiment-caveat">真实发布样本观察，非严格控制变量实验。</p>
       </div>
       <div className="feed-experiment-pair">
-        <figure><Image src={`${xhsRoot}/topic-cinnamoroll-family.png`} alt="玉桂狗家族四宫格笔记真实截图" fill sizes="(max-width:760px) 43vw,25vw"/><figcaption><span>玉桂狗家族四宫格</span><small>2,025 浏览 · 503 赞 · 81 收藏 · 53 转发</small></figcaption></figure>
-        <figure><Image src={`${xhsRoot}/topic-polka-collage.png`} alt="波点控四宫格笔记真实截图" fill sizes="(max-width:760px) 43vw,25vw"/><figcaption><span>波点控四宫格</span><small>148 浏览 · 21 赞 · 8 收藏 · 1 转发</small></figcaption></figure>
+        <figure><Image src={assetPath(`${xhsRoot}/topic-cinnamoroll-family.png`)} alt="玉桂狗家族四宫格笔记真实截图" fill sizes="(max-width:760px) 43vw,25vw"/><figcaption><span>玉桂狗家族四宫格</span><small>2,025 浏览 · 503 赞 · 81 收藏 · 53 转发</small></figcaption></figure>
+        <figure><Image src={assetPath(`${xhsRoot}/topic-polka-collage.png`)} alt="波点控四宫格笔记真实截图" fill sizes="(max-width:760px) 43vw,25vw"/><figcaption><span>波点控四宫格</span><small>148 浏览 · 21 赞 · 8 收藏 · 1 转发</small></figcaption></figure>
       </div>
     </section>
 
@@ -263,9 +265,9 @@ function StrategyBoards(){
         <p className="feed-experiment-caveat">按每千次浏览转发量比较，结果仅作样本观察。</p>
       </div>
       <div className="feed-sharing-proof">
-        <figure><Image src={`${xhsRoot}/sharing-wedding-avatars.png`} alt="轻松熊婚礼双人头像笔记真实截图" fill sizes="(max-width:760px) 54vw,24vw"/><figcaption>46.4 <small>每千次浏览转发</small><span>2,696 浏览 · 631 赞 · 170 收藏 · 125 转发</span></figcaption></figure>
-        <figure><Image src={`${xhsRoot}/sharing-pink-avatars.png`} alt="粉色角色双人头像笔记真实截图" fill sizes="(max-width:760px) 54vw,24vw"/><figcaption>35.6 <small>每千次浏览转发</small><span>4,160 浏览 · 832 赞 · 205 收藏 · 148 转发</span></figcaption></figure>
-        <figure className="feed-sharing-proof__control"><Image src={`${xhsRoot}/bear-bread-3287-8443.png`} alt="bear bread 对照笔记真实截图" fill sizes="(max-width:760px) 40vw,17vw"/><figcaption>11.3 <small>每千次浏览转发</small><span>8,443 浏览 · 3,287 赞 · 207 收藏 · 95 转发</span></figcaption></figure>
+        <figure><Image src={assetPath(`${xhsRoot}/sharing-wedding-avatars.png`)} alt="轻松熊婚礼双人头像笔记真实截图" fill sizes="(max-width:760px) 54vw,24vw"/><figcaption>46.4 <small>每千次浏览转发</small><span>2,696 浏览 · 631 赞 · 170 收藏 · 125 转发</span></figcaption></figure>
+        <figure><Image src={assetPath(`${xhsRoot}/sharing-pink-avatars.png`)} alt="粉色角色双人头像笔记真实截图" fill sizes="(max-width:760px) 54vw,24vw"/><figcaption>35.6 <small>每千次浏览转发</small><span>4,160 浏览 · 832 赞 · 205 收藏 · 148 转发</span></figcaption></figure>
+        <figure className="feed-sharing-proof__control"><Image src={assetPath(`${xhsRoot}/bear-bread-3287-8443.png`)} alt="bear bread 对照笔记真实截图" fill sizes="(max-width:760px) 40vw,17vw"/><figcaption>11.3 <small>每千次浏览转发</small><span>8,443 浏览 · 3,287 赞 · 207 收藏 · 95 转发</span></figcaption></figure>
       </div>
     </section>
 
@@ -277,8 +279,8 @@ function StrategyBoards(){
       </div>
       <div className="feed-packaging-test">
         <div className="feed-experiment-pair feed-experiment-pair--compact">
-          <figure><div className="feed-title-test__screenshot"><Image src={`${xhsRoot}/title-interactive.png`} alt="互动性标题：想和朋友一起用的头像" fill sizes="(max-width:760px) 43vw,22vw"/></div><figcaption><span>互动性标题</span><small>42 浏览 · 1 赞 · 2 收藏 · 2.38% 点赞率</small></figcaption></figure>
-          <figure><div className="feed-title-test__screenshot"><Image src={`${xhsRoot}/title-emoji-minimal.png`} alt="emoji简约标题：兔子表情" fill sizes="(max-width:760px) 43vw,22vw"/></div><figcaption><span>emoji简约标题</span><small>记录时 221 浏览 · 27 赞 · 6 收藏 · 12.22% 点赞率</small></figcaption></figure>
+          <figure><div className="feed-title-test__screenshot"><Image src={assetPath(`${xhsRoot}/title-interactive.png`)} alt="互动性标题：想和朋友一起用的头像" fill sizes="(max-width:760px) 43vw,22vw"/></div><figcaption><span>互动性标题</span><small>42 浏览 · 1 赞 · 2 收藏 · 2.38% 点赞率</small></figcaption></figure>
+          <figure><div className="feed-title-test__screenshot"><Image src={assetPath(`${xhsRoot}/title-emoji-minimal.png`)} alt="emoji简约标题：兔子表情" fill sizes="(max-width:760px) 43vw,22vw"/></div><figcaption><span>emoji简约标题</span><small>记录时 221 浏览 · 27 赞 · 6 收藏 · 12.22% 点赞率</small></figcaption></figure>
         </div>
         <div className="feed-packaging-test__numbers"><strong>42 → 221<small>浏览</small></strong><p>2.38% → 12.22%<small>点赞率</small></p></div>
       </div>
@@ -292,8 +294,8 @@ function StrategyBoards(){
       </div>
       <div className="feed-packaging-test feed-packaging-test--cover">
         <div className="feed-experiment-pair feed-experiment-pair--compact">
-          <figure><Image src={`${xhsRoot}/cover-pair-new.png`} alt="双人拼接封面：粉色与黄色角色头像" fill sizes="(max-width:760px) 43vw,22vw"/><figcaption><span>双人拼接</span><small>64 浏览 · 13 赞 · 4 收藏 · 3 转发</small></figcaption></figure>
-          <figure><Image src={`${xhsRoot}/cover-single-new.png`} alt="单张原图封面：粉色角色头像" fill sizes="(max-width:760px) 43vw,22vw"/><figcaption><span>单张原图</span><small>127 浏览 · 33 赞 · 5 收藏 · 2 转发</small></figcaption></figure>
+          <figure><Image src={assetPath(`${xhsRoot}/cover-pair-new.png`)} alt="双人拼接封面：粉色与黄色角色头像" fill sizes="(max-width:760px) 43vw,22vw"/><figcaption><span>双人拼接</span><small>64 浏览 · 13 赞 · 4 收藏 · 3 转发</small></figcaption></figure>
+          <figure><Image src={assetPath(`${xhsRoot}/cover-single-new.png`)} alt="单张原图封面：粉色角色头像" fill sizes="(max-width:760px) 43vw,22vw"/><figcaption><span>单张原图</span><small>127 浏览 · 33 赞 · 5 收藏 · 2 转发</small></figcaption></figure>
         </div>
         <div className="feed-packaging-test__numbers"><strong>64 → 127<small>浏览</small></strong><p>20.31% → 25.98%<small>点赞率</small></p></div>
       </div>
@@ -325,7 +327,7 @@ function StrategyBoards(){
             <div className="feed-strategy-comment-track">
               {[0,1].map(copyIndex=><div key={copyIndex} className="feed-strategy-comment-group" aria-hidden={copyIndex===1}>
                 {comments.map((comment,commentIndex)=><figure key={comment} className={`feed-strategy-marquee-comment feed-strategy-marquee-comment--${laneIndex*2+commentIndex+1}`}>
-                  <Image src={`${strategyAdditionRoot}/${comment}`} alt={copyIndex===0?`真实用户评论 ${laneIndex*2+commentIndex+1}`:""} fill sizes="(max-width:760px) 58vw,32vw"/>
+                  <Image src={assetPath(`${strategyAdditionRoot}/${comment}`)} alt={copyIndex===0?`真实用户评论 ${laneIndex*2+commentIndex+1}`:""} fill sizes="(max-width:760px) 58vw,32vw"/>
                 </figure>)}
               </div>)}
             </div>
@@ -367,7 +369,7 @@ function PlatformCard({item,index}:{item:(typeof platformJudgements)[number];ind
       </div>
       <div className="feed-planning-platform__content">
         <div><h3>{item.title}</h3><p>{item.body}</p>{item.keywords.length>0&&<ul aria-label={`${item.platform}表达方式`}>{item.keywords.map(keyword=><li key={keyword}>{keyword}</li>)}</ul>}</div>
-        <figure><Image src={item.image} alt={item.alt} fill sizes="(max-width:760px) 82vw,25vw"/></figure>
+        <figure><Image src={assetPath(item.image)} alt={item.alt} fill sizes="(max-width:760px) 82vw,25vw"/></figure>
       </div>
     </article>
   </section>;
@@ -390,7 +392,7 @@ function XiaohongshuGrowth(){
           </div>
         </div>
         <div className="feed-xiaohongshu-growth__proofs feed-xiaohongshu-growth__proofs--single">
-          <figure className="feed-xiaohongshu-growth__profile"><Image src={`${xhsRoot}/profile-420.png`} alt="mayebebaby 小红书主页，显示 420 粉丝和 2.7 万获赞与收藏" fill sizes="(max-width:760px) 80vw,44vw"/></figure>
+          <figure className="feed-xiaohongshu-growth__profile"><Image src={assetPath(`${xhsRoot}/profile-420.png`)} alt="mayebebaby 小红书主页，显示 420 粉丝和 2.7 万获赞与收藏" fill sizes="(max-width:760px) 80vw,44vw"/></figure>
         </div>
       </div>
     </article>
@@ -417,7 +419,7 @@ function LongImagePreview({src,alt,className,defaultPreviewSrc}:{src:string;alt:
     setFocus({x,y,active});
   };
   const previewStyle={
-    backgroundImage:`url("${focus.active?src:(defaultPreviewSrc??src)}")`,
+    backgroundImage:`url("${assetPath(focus.active?src:(defaultPreviewSrc??src))}")`,
     backgroundPosition:focus.active?`${focus.x}% ${focus.y}%`:"center",
   } as React.CSSProperties;
   const focusStyle={left:`${focus.x}%`,top:`${focus.y}%`} as React.CSSProperties;
@@ -431,7 +433,7 @@ function LongImagePreview({src,alt,className,defaultPreviewSrc}:{src:string;alt:
       onPointerMove={event=>updateFocus(event)}
       onPointerDown={event=>updateFocus(event)}
     >
-      <Image src={src} alt={alt} fill sizes="18vw"/>
+      <Image src={assetPath(src)} alt={alt} fill sizes="18vw"/>
       <span className="feed-long-image-preview__focus" style={focusStyle} aria-hidden="true"/>
     </div>
     <div className="feed-long-image-preview__detail" style={previewStyle} aria-live="polite">
@@ -484,11 +486,11 @@ function GraphicEditorialCases(){
       </div>
       <div className="feed-graphic-editorial__details" aria-label="长图局部细节">
         {diamondDetails.map((detail,index)=><figure key={detail.src} className={`feed-graphic-editorial__detail feed-graphic-editorial__detail--${index+1}`}>
-          <Image src={`${graphicEditorialRoot}/${detail.src}`} alt={detail.alt} fill sizes="22vw"/>
+          <Image src={assetPath(`${graphicEditorialRoot}/${detail.src}`)} alt={detail.alt} fill sizes="22vw"/>
           <figcaption>{detail.label}</figcaption>
         </figure>)}
       </div>
-      <LongImagePreview className="feed-graphic-editorial__overview" src={mainImage} defaultPreviewSrc={`${graphicEditorialRoot}/diamond-cover.png`} alt="《钻石科普》完整长图全貌"/>
+      <LongImagePreview className="feed-graphic-editorial__overview" src={assetPath(mainImage)} defaultPreviewSrc={`${graphicEditorialRoot}/diamond-cover.png`} alt="《钻石科普》完整长图全貌"/>
     </section>
     <section data-active={activeCase===1?"true":"false"} aria-hidden={activeCase!==1} className="feed-graphic-editorial__case feed-graphic-editorial__case--support" aria-label="玛瑙的大家庭辅助案例">
       <div className="feed-graphic-editorial__support-copy">
@@ -496,7 +498,7 @@ function GraphicEditorialCases(){
         <h3>《玛瑙的大家庭》</h3>
         <span>以统一的信息层级和连续阅读节奏，整理另一组移动端科普内容。</span>
       </div>
-      <LongImagePreview className="feed-graphic-editorial__support-image" src={`${graphicEditorialRoot}/agate-family.jpg`} alt="《玛瑙的大家庭》完整长图辅助案例"/>
+      <LongImagePreview className="feed-graphic-editorial__support-image" src={assetPath(`${graphicEditorialRoot}/agate-family.jpg`)} alt="《玛瑙的大家庭》完整长图辅助案例"/>
     </section>
     </div>
   </div>;

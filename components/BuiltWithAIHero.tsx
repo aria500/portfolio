@@ -1,5 +1,7 @@
 "use client";
 
+import { assetPath } from "@/lib/assetPath";
+
 import Image from "next/image";
 import { useCallback, useEffect, useRef, useState } from "react";
 
@@ -42,7 +44,7 @@ function GardenFlower({ flower, stage, previousStage, watering, feedbackKey, onW
         <span className="garden-flower__art">
           {previousStage !== null ? (
             <Image
-              src={sourceFor(flower.folder, previousStage)}
+              src={assetPath(sourceFor(flower.folder, previousStage))}
               alt=""
               fill
               sizes="(max-width: 760px) 30vw, 210px"
@@ -51,7 +53,7 @@ function GardenFlower({ flower, stage, previousStage, watering, feedbackKey, onW
           ) : null}
           <Image
             key={`${flower.name}-${stage}`}
-            src={sourceFor(flower.folder, stage)}
+            src={assetPath(sourceFor(flower.folder, stage))}
             alt=""
             fill
             sizes="(max-width: 760px) 30vw, 210px"

@@ -1,4 +1,6 @@
 "use client";
+
+import { assetPath } from "@/lib/assetPath";
 import { ProjectFooter } from "./ProjectFooter";
 
 import Link from "next/link";
@@ -32,9 +34,9 @@ function Film({ file, title, crop = "", poster }: { file: string; title: string;
     return () => { observer.disconnect(); video.pause(); };
   }, []);
   return <div ref={frameRef} className={`${journey.film} ${crop}`}>
-    <video ref={ref} src={`${root}/${file}`} poster={poster} autoPlay muted loop playsInline preload="auto"
+    <video ref={ref} src={assetPath(`${root}/${file}`)} poster={assetPath(poster)} autoPlay muted loop playsInline preload="auto"
       aria-label={title} onError={() => setFailed(true)} onPlay={() => setPlaying(true)} onPause={() => setPlaying(false)}/>
-    {failed ? <a className={journey.mediaControl} href={`${root}/${file}`}>打开原始视频 ↗</a> :
+    {failed ? <a className={journey.mediaControl} href={assetPath(`${root}/${file}`)}>打开原始视频 ↗</a> :
       <button className={journey.mediaControl} type="button" aria-label={`${playing ? "暂停" : "播放"}${title}`} onClick={() => {
         if (!ref.current) return;
         manualPause.current = playing;
@@ -48,8 +50,8 @@ function FlowerCompare() {
   return <div className={study.mainCompare} style={{ "--split": `${split}%` } as CSSProperties}>
     <div className={study.compareLabels}><span>BEFORE</span><span>AFTER</span></div>
     <div className={study.compareCanvas}>
-      <img className={study.finalTulip} src={`${root}/flowers/05-tulip.png`} alt="Current：最终郁金香盛开素材" loading="lazy"/>
-      <div className={study.beforeLayer}><img src={`${root}/v1-tulip.png`} alt="V1：旧版郁金香素材" loading="lazy"/></div>
+      <img className={study.finalTulip} src={assetPath(`${root}/flowers/05-tulip.png`)} alt="Current：最终郁金香盛开素材" loading="lazy"/>
+      <div className={study.beforeLayer}><img src={assetPath(`${root}/v1-tulip.png`)} alt="V1：旧版郁金香素材" loading="lazy"/></div>
       <div className={study.compareDivider} aria-hidden="true"><span>‹ ›</span></div>
       <input type="range" min="0" max="100" value={split} onChange={event=>setSplit(Number(event.target.value))} aria-label="拖动比较 V1 与 Current 花朵" aria-valuetext={`V1 显示 ${split}%，Current 显示 ${100-split}%`}/>
     </div>
@@ -85,7 +87,7 @@ function JourneyBody() {
   return <div ref={ref} className={`${journey.body} ${study.layout}`}>
     <aside className={study.sidebar}>
       <Link href="/" className={study.back}>← 返回</Link>
-      <nav aria-label="项目章节">{chapters.map(([id, name], i) => <a key={id} href={`#${id}`} aria-current={active === id ? "location" : undefined}><span>0{i + 1}</span>{name}</a>)}</nav>
+      <nav aria-label="项目章节">{chapters.map(([id, name], i) => <a key={id} href={assetPath(`#${id}`)} aria-current={active === id ? "location" : undefined}><span>0{i + 1}</span>{name}</a>)}</nav>
     </aside>
     <div className={study.content}>
       <section id="bloom-why" aria-labelledby="bloom-why-title">
@@ -94,7 +96,7 @@ function JourneyBody() {
           <p>喝水提醒很容易被忽略，单纯记录毫升数也很难带来持续动力。</p>
           <p>我想把每天重复的饮水行为，变成一种看得见、会期待、能留下来的成长体验。</p>
         </header>
-        <figure className={study.frame}><img src={`${root}/scene-record.png`} alt="日常工作桌面上的饮水记录场景" loading="lazy"/></figure>
+        <figure className={study.frame}><img src={assetPath(`${root}/scene-record.png`)} alt="日常工作桌面上的饮水记录场景" loading="lazy"/></figure>
         <div className={study.values}>{[
           ["可视化成长", "喝下的水，会变成植物真实可见的成长。"],
           ["随机花朵", "每天种出的花并不完全相同，让完成饮水多一点期待。"],
@@ -107,7 +109,7 @@ function JourneyBody() {
         <figure className={study.frame}><Film file="desktop-flow-model.mp4" title="电脑端完整饮水流程" crop={study.model}/></figure>
         <ol className={study.flow}>{["记录此刻", "快捷饮水", "水量与进度更新", "花朵成长", "保存今天"].map(text => <li key={text}>{text}</li>)}</ol>
         <div id="bloom-growth" className={study.subsection}><h3>六个阶段，让成长看得见。</h3>
-          <div className={study.stages}>{stageNames.map((name, i) => <figure key={name}><img src={`${root}/blue-stages/stage-${i + 1}.png`} alt={`蓝色花第${i + 1}阶段：${name}`} loading="lazy"/><figcaption><span>0{i + 1}</span>{name}</figcaption></figure>)}</div>
+          <div className={study.stages}>{stageNames.map((name, i) => <figure key={name}><img src={assetPath(`${root}/blue-stages/stage-${i + 1}.png`)} alt={`蓝色花第${i + 1}阶段：${name}`} loading="lazy"/><figcaption><span>0{i + 1}</span>{name}</figcaption></figure>)}</div>
         </div>
       </section>
       <section id="bloom-details" aria-labelledby="bloom-micro-title">
@@ -130,13 +132,13 @@ function JourneyBody() {
         </div>
         <ul className={study.upgrades}><li>比例更统一</li><li>细节更完整</li><li>系统更一致</li></ul>
         <div className={study.systemEvidence} aria-label="旧版与最终版花朵系统素材选集">
-          <div className={study.evidenceRow}><span>BEFORE</span>{[["v1-tulip","旧版郁金香"],["v1-lily","旧版百合"],["v1-peony","旧版牡丹"]].map(([file,name])=><figure key={file}><img src={`${root}/${file}.png`} alt={name} loading="lazy"/></figure>)}</div>
-          <div className={study.evidenceRow}><span>AFTER</span>{[["05-tulip","最终郁金香"],["01-green","最终绿色花盆植物"],["02-purple","最终紫色花簇"]].map(([file,name])=><figure key={file}><img src={`${root}/flowers/${file}.png`} alt={name} loading="lazy"/></figure>)}</div>
+          <div className={study.evidenceRow}><span>BEFORE</span>{[["v1-tulip","旧版郁金香"],["v1-lily","旧版百合"],["v1-peony","旧版牡丹"]].map(([file,name])=><figure key={file}><img src={assetPath(`${root}/${file}.png`)} alt={name} loading="lazy"/></figure>)}</div>
+          <div className={study.evidenceRow}><span>AFTER</span>{[["05-tulip","最终郁金香"],["01-green","最终绿色花盆植物"],["02-purple","最终紫色花簇"]].map(([file,name])=><figure key={file}><img src={assetPath(`${root}/flowers/${file}.png`)} alt={name} loading="lazy"/></figure>)}</div>
           <p className={study.small}>两版系统素材选集，非逐一同花种配对。</p>
         </div>
       </section>
       <section id="bloom-future" className={study.futureNote} aria-labelledby="bloom-future-title"><header><span className={study.label}>FUTURE NOTE</span><h2 id="bloom-future-title">把数字里的花，带到现实里。</h2><p>连续打卡 30 天后，未来可以尝试与合作花店联动，兑换一束真实鲜花。</p></header>
-        <figure><img src={`${root}/future-florist-concept.png`} alt="未来花店联动活动概念：用户展示 30 天打卡完成界面，从店员手中领取鲜花" loading="lazy" width="1122" height="1402"/></figure>
+        <figure><img src={assetPath(`${root}/future-florist-concept.png`)} alt="未来花店联动活动概念：用户展示 30 天打卡完成界面，从店员手中领取鲜花" loading="lazy" width="1122" height="1402"/></figure>
       </section>
     </div>
   </div>;

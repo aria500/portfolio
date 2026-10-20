@@ -1,3 +1,5 @@
+
+import { assetPath } from "@/lib/assetPath";
 import Link from "next/link";
 import { nextTheme } from "@/data/projectNavigation";
 import type { CSSProperties } from "react";
@@ -24,9 +26,9 @@ export function ProjectStory({ project, next, chapters, downloads = [] }: { proj
           </div>
           <div className={`story-media ${chapterIndex === 0 ? "story-media--hero" : ""}`}>
             {chapter.assets.map((asset) => asset.kind === "video" ? (
-              <video key={asset.src} src={asset.src} muted loop playsInline controls aria-label={asset.alt} />
+              <video key={asset.src} src={assetPath(asset.src)} muted loop playsInline controls aria-label={asset.alt} />
             ) : (
-              <img key={asset.src} src={asset.src} alt={asset.alt} className={asset.contained ? "story-image--contained" : ""} />
+              <img key={asset.src} src={assetPath(asset.src)} alt={asset.alt} className={asset.contained ? "story-image--contained" : ""} />
             ))}
           </div>
         </section>
@@ -36,7 +38,7 @@ export function ProjectStory({ project, next, chapters, downloads = [] }: { proj
           <p className="story-eyebrow">ARCHIVE / CONTACT</p>
           <div className="story-copy-body">
             <h2>More details</h2>
-            {downloads.map((download) => <a key={download.href} href={download.href} download>{download.label} ↘</a>)}
+            {downloads.map((download) => <a key={download.href} href={assetPath(download.href)} download>{download.label} ↘</a>)}
           </div>
         </div>
         <div className="story-next-wrap">

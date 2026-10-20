@@ -1,5 +1,7 @@
 "use client";
 
+import { assetPath } from "@/lib/assetPath";
+
 import { useRef, useState } from "react";
 import type { KeyboardEvent, TouchEvent, WheelEvent } from "react";
 import Link from "next/link";
@@ -129,12 +131,12 @@ export function PortfolioHome({ projects }: { projects: Project[] }) {
                 </div>
               </div>
               <figure className="home-about-photo">
-                <div className="home-about-photo-frame"><Image src="/images/about/yan-film-portrait.png" alt="张炎站在树林与草地之间，手持应援物和小玩偶的胶片照片" fill sizes="(max-width:760px) 22vw,12vw"/></div>
+                <div className="home-about-photo-frame"><Image src={assetPath("/images/about/yan-film-portrait.png")} alt="张炎站在树林与草地之间，手持应援物和小玩偶的胶片照片" fill sizes="(max-width:760px) 22vw,12vw"/></div>
               </figure>
             </div>
             <div className="home-about-links">
               <a href="mailto:ian2280395276@gmail.com">Email ↗</a>
-              <a href="/downloads/aria-zhang-resume.pdf" download>Download Resume ↓</a>
+              <a href={assetPath("/downloads/aria-zhang-resume.pdf")} download>Download Resume ↓</a>
               <a href="https://aria500.github.io/waterflower/?v=14days-final" target="_blank" rel="noopener noreferrer">Drink to Bloom · Live Project ↗</a>
             </div>
           </div>
