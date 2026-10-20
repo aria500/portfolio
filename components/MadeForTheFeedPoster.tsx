@@ -9,7 +9,7 @@ import styles from "./MadeForTheFeedPoster.module.css";
 
 const mediaRoot = "/projects/made-for-the-feed-v4";
 
-const feedPalette=["#ffffff","#ffffff","#fcf9ef","#968978","#7b2214"];
+const feedPalette=["#ffffff","#fcf9ef","#fcf9ef","#968978","#7b2214"];
 
 function FeedBackgroundLayer(){
   const layerRef=useRef<HTMLDivElement>(null);
@@ -223,37 +223,92 @@ function FixedStoryAsset({asset,index}:{asset:StoryAsset;index:number}){
 }
 
 function StrategyBoards(){
-  const strategyCards=[
-    {number:"01",title:"账号定位",body:"围绕人物、情绪与片段，提炼更适合社媒传播的内容。"},
-    {number:"02",title:"内容支柱",body:"将内容拆分为人物互动、情绪剪辑、城市 Vlog、图文表达等方向，保持输出的一致性。"},
-    {number:"03",title:"选题来源",body:"从直播片段、旅行素材、平台热点与日常观察中寻找可被放大的内容切口。"},
-    {number:"04",title:"内容目标",body:"通过标题、节奏、画面与平台选择，提高内容的停留感、共鸣感与表达完整度。"},
-  ];
+  const xhsRoot=`${mediaRoot}/xiaohongshu`;
   const commentLanes=[
     ["comment-01.png","comment-02.png"],
     ["comment-03.png","comment-04.png"],
     ["comment-05.png","comment-06.png"],
   ];
   return <div data-feed-palette="1" className="feed-strategy-boards" aria-label="内容策略方法">
-    <div className="feed-strategy-cards">
-      {strategyCards.map((card,index)=><section key={card.number} data-story-stage="0" className={`feed-strategy-card-step feed-strategy-card-step--${index+1}`} aria-label={`${card.number} ${card.title}`}>
-        <article className="feed-strategy-card">
-          <span>{card.number}</span>
-          <div><h3>{card.title}</h3><p>{card.body}</p></div>
-        </article>
-      </section>)}
-    </div>
+    <section data-story-stage="0" className="feed-strategy-chapter feed-account-growth" aria-label="账号成果与定位">
+      <div className="feed-strategy-chapter__copy">
+        <h3>账号成果</h3>
+        <strong>独立运营小红书视觉内容账号，通过内容筛选、标题测试与数据复盘持续优化传播表现。</strong>
+        <div className="feed-account-growth__metrics" aria-label="账号运营成果">
+          <span>420<small>粉丝</small></span><span>10万+<small>浏览</small></span><span>2.7万+<small>获赞与收藏</small></span><span>5,003<small>单篇点赞<br/>历史最高</small></span>
+        </div>
+      </div>
+      <div className="feed-account-growth__proofs">
+        <figure className="feed-account-growth__profile"><Image src={`${xhsRoot}/profile-420.png`} alt="mayebebaby 小红书主页，显示 420 粉丝和 2.7 万获赞与收藏" fill sizes="(max-width:760px) 88vw,42vw"/></figure>
+      </div>
+    </section>
+
+    <section data-story-stage="0" className="feed-strategy-chapter feed-content-experiment feed-content-experiment--topic" aria-label="内容实验：题材偏好">
+      <div className="feed-strategy-chapter__copy">
+        <h3>内容测试</h3>
+        <h4>题材偏好</h4>
+        <strong>相同封面形式，不同题材的传播表现存在差异。</strong>
+        <p className="feed-experiment-caveat">真实发布样本观察，非严格控制变量实验。</p>
+      </div>
+      <div className="feed-experiment-pair">
+        <figure><Image src={`${xhsRoot}/topic-cinnamoroll-family.png`} alt="玉桂狗家族四宫格笔记真实截图" fill sizes="(max-width:760px) 43vw,25vw"/><figcaption><span>玉桂狗家族四宫格</span><small>2,025 浏览 · 503 赞 · 81 收藏 · 53 转发</small></figcaption></figure>
+        <figure><Image src={`${xhsRoot}/topic-polka-collage.png`} alt="波点控四宫格笔记真实截图" fill sizes="(max-width:760px) 43vw,25vw"/><figcaption><span>波点控四宫格</span><small>148 浏览 · 21 赞 · 8 收藏 · 1 转发</small></figcaption></figure>
+      </div>
+    </section>
+
+    <section data-story-stage="0" className="feed-strategy-chapter feed-content-experiment feed-content-experiment--sharing" aria-label="内容实验：分享动机">
+      <div className="feed-strategy-chapter__copy feed-strategy-chapter__copy--right">
+        <h4>分享动机</h4>
+        <strong>双人头像具备共同使用场景，在已发布样本中表现出更高的转发倾向。</strong>
+        <p className="feed-experiment-caveat">按每千次浏览转发量比较，结果仅作样本观察。</p>
+      </div>
+      <div className="feed-sharing-proof">
+        <figure><Image src={`${xhsRoot}/sharing-wedding-avatars.png`} alt="轻松熊婚礼双人头像笔记真实截图" fill sizes="(max-width:760px) 54vw,24vw"/><figcaption>46.4 <small>每千次浏览转发</small><span>2,696 浏览 · 631 赞 · 170 收藏 · 125 转发</span></figcaption></figure>
+        <figure><Image src={`${xhsRoot}/sharing-pink-avatars.png`} alt="粉色角色双人头像笔记真实截图" fill sizes="(max-width:760px) 54vw,24vw"/><figcaption>35.6 <small>每千次浏览转发</small><span>4,160 浏览 · 832 赞 · 205 收藏 · 148 转发</span></figcaption></figure>
+        <figure className="feed-sharing-proof__control"><Image src={`${xhsRoot}/bear-bread-3287-8443.png`} alt="bear bread 对照笔记真实截图" fill sizes="(max-width:760px) 40vw,17vw"/><figcaption>11.3 <small>每千次浏览转发</small><span>8,443 浏览 · 3,287 赞 · 207 收藏 · 95 转发</span></figcaption></figure>
+      </div>
+    </section>
+
+    <section data-story-stage="0" className="feed-strategy-chapter feed-content-experiment feed-content-experiment--packaging" aria-label="内容实验：标题与封面测试">
+      <div className="feed-strategy-chapter__copy">
+        <h4>标题测试</h4>
+        <strong>emoji简约标题在这组发布样本中获得更高浏览与点赞率。</strong>
+        <p className="feed-experiment-caveat">数据采用发布记录时口径，非严格控制变量实验。</p>
+      </div>
+      <div className="feed-packaging-test">
+        <div className="feed-experiment-pair feed-experiment-pair--compact">
+          <figure><div className="feed-title-test__screenshot"><Image src={`${xhsRoot}/title-interactive.png`} alt="互动性标题：想和朋友一起用的头像" fill sizes="(max-width:760px) 43vw,22vw"/></div><figcaption><span>互动性标题</span><small>42 浏览 · 1 赞 · 2 收藏 · 2.38% 点赞率</small></figcaption></figure>
+          <figure><div className="feed-title-test__screenshot"><Image src={`${xhsRoot}/title-emoji-minimal.png`} alt="emoji简约标题：兔子表情" fill sizes="(max-width:760px) 43vw,22vw"/></div><figcaption><span>emoji简约标题</span><small>记录时 221 浏览 · 27 赞 · 6 收藏 · 12.22% 点赞率</small></figcaption></figure>
+        </div>
+        <div className="feed-packaging-test__numbers"><strong>42 → 221<small>浏览</small></strong><p>2.38% → 12.22%<small>点赞率</small></p></div>
+      </div>
+    </section>
+
+    <section data-story-stage="0" className="feed-strategy-chapter feed-content-experiment feed-content-experiment--cover" aria-label="内容实验：封面形式对比">
+      <div className="feed-strategy-chapter__copy">
+        <h4>封面测试</h4>
+        <strong>单张原图获得更高浏览与点赞率，复杂拼接未必更有效。</strong>
+        <p className="feed-experiment-caveat">两篇笔记的标题与图片数量不同。</p>
+      </div>
+      <div className="feed-packaging-test feed-packaging-test--cover">
+        <div className="feed-experiment-pair feed-experiment-pair--compact">
+          <figure><Image src={`${xhsRoot}/cover-pair-new.png`} alt="双人拼接封面：粉色与黄色角色头像" fill sizes="(max-width:760px) 43vw,22vw"/><figcaption><span>双人拼接</span><small>64 浏览 · 13 赞 · 4 收藏 · 3 转发</small></figcaption></figure>
+          <figure><Image src={`${xhsRoot}/cover-single-new.png`} alt="单张原图封面：粉色角色头像" fill sizes="(max-width:760px) 43vw,22vw"/><figcaption><span>单张原图</span><small>127 浏览 · 33 赞 · 5 收藏 · 2 转发</small></figcaption></figure>
+        </div>
+        <div className="feed-packaging-test__numbers"><strong>64 → 127<small>浏览</small></strong><p>20.31% → 25.98%<small>点赞率</small></p></div>
+      </div>
+    </section>
+
     <section data-story-stage="0" className="feed-strategy-execution" aria-label="内容执行与成片证据">
       <div className="feed-strategy-execution__copy">
-        <p>CONTENT EXECUTION</p>
-        <h3>从判断到成片</h3>
-        <strong>从人物日常片段中提炼反差感与情绪连接，并通过标题、节奏和剪辑完成视频表达。</strong>
+        <h3>选题制作</h3>
+        <strong>观察人物、赛事与直播素材，从人物关系和情绪中发现内容切口，提炼标题与叙事方向，再组织素材与视频节奏，形成适合 B 站传播的内容。</strong>
         <ul aria-label="内容执行能力">
-          <li>内容切口</li><li>标题包装</li><li>节奏剪辑</li>
+          <li>人物关系</li><li>内容切口</li><li>叙事方向</li>
         </ul>
       </div>
       <div className="feed-strategy-execution__video">
-        <div className="feed-strategy-execution__video-label"><span>VIDEO PROOF</span><p>B站人物内容 · 成片证据</p></div>
+        <div className="feed-strategy-execution__video-label"><p>B站人物内容 / 成片证据</p></div>
         <div className="feed-strategy-execution__video-frame">
           <ClickToPlayStoryVideo asset={{src:"strategy-video.mp4",kind:"video",className:"",layout:"",alt:"B站人物内容执行成片",clickToPlay:true,poster:"strategy-video-cover.png"}} root={strategyRoot}/>
         </div>
@@ -261,9 +316,9 @@ function StrategyBoards(){
     </section>
     <section data-story-stage="0" className="feed-strategy-feedback" aria-label="用户反馈与内容复盘">
       <header>
-        <p>FEEDBACK LOOP</p>
         <h3>用户反馈</h3>
-        <strong>通过评论反馈观察用户对标题、剪辑节奏和情绪表达的反应，并将高共鸣内容沉淀为后续选题参考。</strong>
+        <strong>通过选题、剪辑与内容表达获得用户真实的情绪共鸣，并将评论与数据反馈沉淀为后续选题参考。</strong>
+        <ul className="feed-strategy-feedback__criteria" aria-label="我的判断标准"><li>吸引停留</li><li>引起共鸣</li><li>引发讨论</li><li>促进收藏 / 复看</li><li>数据反馈与优化</li></ul>
       </header>
       <div className="feed-strategy-comments" aria-label="真实用户评论流">
           {commentLanes.map((comments,laneIndex)=><div key={laneIndex} className={`feed-strategy-comment-lane feed-strategy-comment-lane--${laneIndex+1}`}>
@@ -292,20 +347,6 @@ const platformJudgements=[
     keywords:["氛围封面","城市细节","生活方式"],
   },
   {
-    platform:"小红书",position:"审美内容账号",image:"/images/xiaohongshu-aesthetic-evidence.png",
-    alt:"单篇内容数据：1.5万浏览、3876赞、819收藏、9评论",
-    title:"小红书 / 审美内容账号",
-    subtitle:"从 0 起号，用高频更新验证“轻量审美内容”的平台反馈。",
-    body:"围绕外网可爱图片与视觉灵感做内容筛选，负责选图、标题、标签与发布节奏；根据互动表现持续调整内容方向与更新频率。",
-    metrics:"截至 2026.09.14 · 132 粉丝 · 1.1W 获赞与收藏 · 单篇最高 1.5W 浏览 · 3876 赞 · 819 收藏",
-    fields:[
-      ["内容判断","高识别度、情绪轻、保存欲强的视觉内容更适合连续发布与收藏传播。"],
-      ["平台语境","小红书用户更容易对“审美积累 / 可爱图片 / 视觉灵感”产生点赞与收藏行为。"],
-      ["表达选择","保持轻标题、统一标签与高频更新，弱化复杂叙事，让图片本身成为主角。"],
-    ],
-    keywords:[],
-  },
-  {
     platform:"抖音",position:"节奏抓取",image:`${mediaRoot}/shibuya-night.jpg`,
     alt:"Shibuya 夜景卡点画面局部",title:"Shibuya 卡点剪辑",body:"用夜景、人流和音乐节点形成快速进入的短视频节奏。",
     keywords:["强首帧","音乐卡点","快速剪辑"],
@@ -317,32 +358,53 @@ const platformJudgements=[
   },
 ];
 
+function PlatformCard({item,index}:{item:(typeof platformJudgements)[number];index:number}){
+  return <section data-story-stage="2" className={`feed-planning-platform__step feed-planning-platform__step--${index+1}`} aria-label={`${item.platform}：${item.title}`}>
+    <article className="feed-planning-platform__card">
+      <div className="feed-planning-platform__meta">
+        <span>{String(index+1).padStart(2,"0")}</span>
+        <p>{item.platform}<small>{item.position}</small></p>
+      </div>
+      <div className="feed-planning-platform__content">
+        <div><h3>{item.title}</h3><p>{item.body}</p>{item.keywords.length>0&&<ul aria-label={`${item.platform}表达方式`}>{item.keywords.map(keyword=><li key={keyword}>{keyword}</li>)}</ul>}</div>
+        <figure><Image src={item.image} alt={item.alt} fill sizes="(max-width:760px) 82vw,25vw"/></figure>
+      </div>
+    </article>
+  </section>;
+}
+
+function XiaohongshuGrowth(){
+  const xhsRoot=`${mediaRoot}/xiaohongshu`;
+  return <section data-story-stage="2" className="feed-planning-platform__step feed-planning-platform__step--3 feed-xiaohongshu-growth" aria-label="小红书自然增长运营成果">
+    <article className="feed-planning-platform__card">
+      <div className="feed-planning-platform__meta"><span>02B</span><p>小红书<small>ORGANIC GROWTH</small></p></div>
+      <div className="feed-xiaohongshu-growth__layout">
+        <div className="feed-xiaohongshu-growth__copy">
+          <p>XIAOHONGSHU / CONTENT CURATION &amp; GROWTH</p>
+          <h3>从内容审美到传播反馈</h3>
+          <strong>从视觉审美出发，在真实反馈中寻找更有效的内容表达。</strong>
+          <span>mayebebaby · 2026.09.01-2026.10.19</span>
+          <p>独立运营视觉内容账号，从图片选择、标题包装到数据观察，不断调整更适合平台的内容表达。</p>
+          <div className="feed-xiaohongshu-growth__metrics" aria-label="小红书账号运营数据">
+            <span>420 <small>FOLLOWERS</small></span><span>100K+ <small>TOTAL VIEWS</small></span><span>27K+ <small>LIKES &amp; SAVES</small></span>
+          </div>
+        </div>
+        <div className="feed-xiaohongshu-growth__proofs feed-xiaohongshu-growth__proofs--single">
+          <figure className="feed-xiaohongshu-growth__profile"><Image src={`${xhsRoot}/profile-420.png`} alt="mayebebaby 小红书主页，显示 420 粉丝和 2.7 万获赞与收藏" fill sizes="(max-width:760px) 80vw,44vw"/></figure>
+        </div>
+      </div>
+    </article>
+  </section>;
+}
+
 function PlanningPlatformSequence(){
   return <div data-feed-palette="3" className="feed-planning-platform" aria-label="内容策划与平台适配案例">
     <section data-story-stage="2" className="feed-planning-platform__opening" aria-label="内容策划与平台适配章节开场"/>
-    {platformJudgements.map((item,index)=><section key={item.title} data-story-stage="2" className={`feed-planning-platform__step feed-planning-platform__step--${index>2?index:index+1}${item.fields?" feed-platform-aesthetic":""}`} aria-label={`${item.platform}：${item.title}`}>
-      <article className="feed-planning-platform__card">
-        <div className="feed-planning-platform__meta">
-          <span>{item.fields?"02B":String(index>2?index:index+1).padStart(2,"0")}</span>
-          <p>{item.platform}<small>{item.position}</small></p>
-        </div>
-        <div className="feed-planning-platform__content">
-          <div>
-            <h3>{item.title}</h3>
-            {item.subtitle && <p>{item.subtitle}</p>}
-            {!item.fields && <p>{item.body}</p>}
-            {item.fields && <dl className="feed-platform-aesthetic__fields">{item.fields.map(([label,text])=><div key={label}><dt>{label}</dt><dd>{text}</dd></div>)}</dl>}
-            {item.metrics && <p className="feed-platform-aesthetic__metrics">{item.metrics.split(" · 单篇最高 ")[0]}<br/>单篇最高 {item.metrics.split(" · 单篇最高 ")[1]}</p>}
-            {item.keywords.length>0 && <ul aria-label={`${item.platform}表达方式`}>
-              {item.keywords.map(keyword=><li key={keyword}>{keyword}</li>)}
-            </ul>}
-          </div>
-          <figure>
-            <Image src={item.image} alt={item.alt} fill sizes="(max-width:760px) 82vw,25vw"/>
-          </figure>
-        </div>
-      </article>
-    </section>)}
+    <PlatformCard item={platformJudgements[0]} index={0}/>
+    <PlatformCard item={platformJudgements[1]} index={1}/>
+    <XiaohongshuGrowth/>
+    <PlatformCard item={platformJudgements[2]} index={3}/>
+    <PlatformCard item={platformJudgements[3]} index={4}/>
   </div>;
 }
 
@@ -478,13 +540,21 @@ function FixedStory(){
     if(!root)return;
     const slides=Array.from(root.querySelectorAll<HTMLElement>("[data-story-stage]"));
     const boards=Array.from(root.querySelectorAll<HTMLElement>(".feed-strategy-board"));
+    const productionIntro=root.querySelector<HTMLElement>(".feed-production-sequence__intro");
+    // Retire the complete fixed title before the next chapter's title can enter.
+    const handoffObserver=new IntersectionObserver(([entry])=>{
+      root.dataset.productionHandoff=entry.isIntersecting?"true":"false";
+    },{rootMargin:"0px 0px -10% 0px",threshold:0});
+    if(productionIntro)handoffObserver.observe(productionIntro);
     const observer=new IntersectionObserver(entries=>{
       entries.forEach(entry=>{
         const node=entry.target as HTMLElement;
-        node.dataset.active=entry.isIntersecting?"true":"false";
-        if(entry.isIntersecting)setCurrent(Number(node.dataset.storyStage));
+        const activationRatio=node.closest(".feed-strategy-boards")?.contains(node) ? .18 : .52;
+        const isActive=entry.isIntersecting&&entry.intersectionRatio>=activationRatio;
+        node.dataset.active=isActive?"true":"false";
+        if(isActive)setCurrent(Number(node.dataset.storyStage));
       });
-    },{threshold:.52});
+    },{threshold:[.18,.52]});
     slides.forEach(slide=>observer.observe(slide));
     const boardObserver=new IntersectionObserver(entries=>{
       entries.forEach(entry=>{
@@ -496,7 +566,7 @@ function FixedStory(){
       });
     },{threshold:.34});
     boards.forEach(board=>boardObserver.observe(board));
-    return()=>{observer.disconnect();boardObserver.disconnect();};
+    return()=>{observer.disconnect();boardObserver.disconnect();handoffObserver.disconnect();};
   },[]);
 
   const stage=storyStages[current];

@@ -3,6 +3,7 @@
 import { useRef, useState } from "react";
 import type { KeyboardEvent, TouchEvent, WheelEvent } from "react";
 import Link from "next/link";
+import Image from "next/image";
 import { themeFor } from "@/data/projectNavigation";
 import type { Project } from "@/data/projects";
 import { ProjectVisual } from "./ProjectVisual";
@@ -66,7 +67,7 @@ export function PortfolioHome({ projects }: { projects: Project[] }) {
   return (
     <main
       className="portfolio-home"
-      style={{ "--active-accent": activeProject?.accentColor ?? "#747b6d" } as React.CSSProperties}
+      style={{ "--active-accent": showAbout ? "#6E8B74" : activeProject?.accentColor ?? "#747b6d" } as React.CSSProperties}
       onWheel={onWheel}
       onKeyDown={onKeyDown}
       onTouchStart={onTouchStart}
@@ -92,7 +93,7 @@ export function PortfolioHome({ projects }: { projects: Project[] }) {
             href={themeFor(project.slug).href}
             className={index === activeIndex ? "is-active" : ""}
             data-chinese-visible={index === (highlightedIndex ?? activeIndex)}
-            style={{ "--project-nav-color": project.navColor } as React.CSSProperties}
+            style={{ "--project-nav-color": project.slug === "brand-planning" ? "#6E8B74" : project.navColor } as React.CSSProperties}
             onMouseEnter={() => {
               setHighlightedIndex(index);
               previewProject(index);
@@ -116,13 +117,20 @@ export function PortfolioHome({ projects }: { projects: Project[] }) {
       <section className="home-visual-stage" aria-label="Current project preview">
         {showAbout && (
           <div className="home-about-preview">
-            <p className="home-about-label">关于我 / ABOUT</p>
-            <h1>张炎 <span>/ Yan Zhang</span></h1>
-            <h2>内容策划 · 新媒体运营</h2>
-            <div className="home-about-copy">
-              <p>广告学背景，关注内容策划、品牌表达与 AI 辅助创作。</p>
-              <p>有自媒体运营、品牌策划与跨境电商相关项目经验，习惯从选题、文案、视觉和复盘几个维度推进内容。</p>
-              <p>最近也在尝试使用 AI，把内容与产品想法快速做成可交互的作品。</p>
+            <div className="home-about-editorial">
+              <div className="home-about-text">
+                <p className="home-about-label">ABOUT</p>
+                <h1>张炎 / Yan Zhang</h1>
+                <h2>内容策划 · 新媒体运营 · 创意表达</h2>
+                <div className="home-about-copy">
+                  <p>喜欢从日常、情绪和图像里寻找内容线索，也习惯把零散的灵感整理成更清晰的表达。</p>
+                  <p>有自媒体运营、品牌策划与跨境电商相关项目经验，关注选题、文案、视觉与复盘之间的联系。</p>
+                  <p>最近也在尝试借助 AI，把内容想法继续延伸成更完整的交互作品。</p>
+                </div>
+              </div>
+              <figure className="home-about-photo">
+                <div className="home-about-photo-frame"><Image src="/images/about/yan-film-portrait.png" alt="张炎站在树林与草地之间，手持应援物和小玩偶的胶片照片" fill sizes="(max-width:760px) 22vw,12vw"/></div>
+              </figure>
             </div>
             <div className="home-about-links">
               <a href="mailto:ian2280395276@gmail.com">Email ↗</a>

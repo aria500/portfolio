@@ -11,7 +11,7 @@ const FLOWERS = [
   { name: "Flame lily", folder: "01-green", className: "garden-flower--one" },
   { name: "Yellow daisies", folder: "06-daisy-yellow", className: "garden-flower--two" },
   { name: "Blue bells", folder: "03-blue", className: "garden-flower--three" },
-  { name: "Hydrangea", folder: "02-purple", className: "garden-flower--four" },
+  { name: "Purple daisies", folder: "04-daisy-purple", className: "garden-flower--four" },
   { name: "Tulips", folder: "05-tulip", className: "garden-flower--five" },
   { name: "Yellow daisies", folder: "06-daisy-yellow", className: "garden-flower--six" },
   { name: "Pink blossom", folder: "07-pink", className: "garden-flower--seven" },
@@ -70,7 +70,7 @@ export function BuiltWithAIHero() {
   const fadeTimersRef = useRef<number[]>([]);
   const feedbackTimerRef = useRef(0);
   const countFrameRef = useRef(0);
-  const initialGarden: { water: number; stages: number[] } = { water: 0, stages: FLOWERS.map((_, index) => index === 3 ? 3 : [0, 4, 7].includes(index) ? 1 : 0) };
+  const initialGarden: { water: number; stages: number[] } = { water: 0, stages: FLOWERS.map((_, index) => index === 3 ? 4 : [0, 4, 7].includes(index) ? 1 : 0) };
   const gardenRef = useRef(initialGarden);
   const [garden, setGarden] = useState(initialGarden);
   const [displayWater, setDisplayWater] = useState(0);
