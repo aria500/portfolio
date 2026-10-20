@@ -253,7 +253,7 @@ function StrategyBoards(){
         <p className="feed-experiment-caveat">真实发布样本观察，非严格控制变量实验。</p>
       </div>
       <div className="feed-experiment-pair">
-        <figure><Image src={assetPath(`${xhsRoot}/topic-cinnamoroll-family.png?v=family-grid-2`)} alt="玉桂狗家族四宫格笔记真实截图" fill sizes="(max-width:760px) 43vw,25vw"/><figcaption><span>玉桂狗家族四宫格</span><small>2,025 浏览 · 503 赞 · 81 收藏 · 53 转发</small></figcaption></figure>
+        <figure><Image src={assetPath(`${xhsRoot}/topic-cinnamoroll-family.png?v=family-grid-2`)} alt="玉桂狗家族四宫格笔记真实截图" fill sizes="(max-width:760px) 43vw,25vw"/><figcaption><span>玉桂狗家族四宫格</span><small>620 浏览 · 167 赞 · 27 收藏 · 7 转发</small></figcaption></figure>
         <figure><Image src={assetPath(`${xhsRoot}/topic-polka-collage.png`)} alt="波点控四宫格笔记真实截图" fill sizes="(max-width:760px) 43vw,25vw"/><figcaption><span>波点控四宫格</span><small>148 浏览 · 21 赞 · 8 收藏 · 1 转发</small></figcaption></figure>
       </div>
     </section>
