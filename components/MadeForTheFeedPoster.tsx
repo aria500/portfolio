@@ -267,7 +267,7 @@ function StrategyBoards(){
       <div className="feed-sharing-proof">
         <figure><Image src={assetPath(`${xhsRoot}/sharing-wedding-avatars.png`)} alt="轻松熊婚礼双人头像笔记真实截图" fill sizes="(max-width:760px) 54vw,24vw"/><figcaption>46.4 <small>每千次浏览转发</small><span>2,696 浏览 · 631 赞 · 170 收藏 · 125 转发</span></figcaption></figure>
         <figure><Image src={assetPath(`${xhsRoot}/sharing-pink-avatars.png`)} alt="粉色角色双人头像笔记真实截图" fill sizes="(max-width:760px) 54vw,24vw"/><figcaption>35.6 <small>每千次浏览转发</small><span>4,160 浏览 · 832 赞 · 205 收藏 · 148 转发</span></figcaption></figure>
-        <figure className="feed-sharing-proof__control"><Image src={assetPath(`${xhsRoot}/bear-bread-3287-8443.png`)} alt="bear bread 对照笔记真实截图" fill sizes="(max-width:760px) 40vw,17vw"/><figcaption>11.3 <small>每千次浏览转发</small><span>8,443 浏览 · 3,287 赞 · 207 收藏 · 95 转发</span></figcaption></figure>
+        <figure className="feed-sharing-proof__control"><Image src={assetPath(`${xhsRoot}/sharing-post-01.png`)} alt="小红书帖子1：粉色拓麻歌子玩偶对照笔记真实截图" fill sizes="(max-width:760px) 40vw,17vw"/><figcaption>约 23.4 <small>每千次浏览转发</small><span>约 2.3万 浏览 · 4,997 赞 · 1,059 收藏 · 538 转发</span></figcaption></figure>
       </div>
     </section>
 
