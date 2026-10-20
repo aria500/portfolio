@@ -379,10 +379,9 @@ function XiaohongshuGrowth(){
   const xhsRoot=`${mediaRoot}/xiaohongshu`;
   return <section data-story-stage="2" className="feed-planning-platform__step feed-planning-platform__step--3 feed-xiaohongshu-growth" aria-label="小红书自然增长运营成果">
     <article className="feed-planning-platform__card">
-      <div className="feed-planning-platform__meta"><span>02B</span><p>小红书<small>ORGANIC GROWTH</small></p></div>
+      <div className="feed-planning-platform__meta"><span>02B</span><p>小红书<small>自然增长</small></p></div>
       <div className="feed-xiaohongshu-growth__layout">
         <div className="feed-xiaohongshu-growth__copy">
-          <p>XIAOHONGSHU / CONTENT CURATION &amp; GROWTH</p>
           <h3>从内容审美到传播反馈</h3>
           <strong>从视觉审美出发，在真实反馈中寻找更有效的内容表达。</strong>
           <span>mayebebaby · 2026.09.01-2026.10.19</span>
